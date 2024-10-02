@@ -16,11 +16,64 @@ const client = new Client({
 var isToxic = false;
 
 client.on('guildMemberAdd', async (member) => {
+
     try {
-        const browser = await puppeteer.lauch();
-        //TODO: Create puppet that looks through and screenshot link elements
+        //Send member info to Pattern Analysis
+        //Message Prep
+        const userDetails = `
+            **New Message**
+            - Username: ${member.DisplayName}}
+            - ID: ${member.id}
+            - Guild: ${member.Guild}
+        `;
+
+        // Retrieve member details
+        const memberInfo = {
+            Avatar: member.Avatar,
+            Bannable: member.Bannable,
+            CommunicationDisabledUntil: member.CommunicationDisableUntil.toDateString(),
+            DisplayColor: member.DisplayColor,
+            DisplayHexColor: member.DisplayHexColor,
+            DisplayName: member.DisplayName,
+            DMChannel: member.DMChannel,
+            Flags: member.Flags,
+            Guild: member.Guild,
+            ID: member.id,
+            JoinedAt: member.joinedAt.toDateString(),
+            Kickable: member.Kickable,
+            Manageable: member.Manageable,
+            Moderatable: member.Moderatable,
+            Nickname: member.Nickname,
+            Partial: member.Partial,
+            Pending: member.Pending,
+            Permissions: member.Permissions,
+            PremiumSince: member.PremiumSince.toDateString(),
+            Presence: member.Presence,
+            Roles: member.Roles,
+            User: member.User,
+            Voice: member.Voice
+
+        };
+
+        //Send member info to Pattern analysis
+        fetch(`http://localhost:5079/PatternAnalysis${memberInfo}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Significant Pattern: ' + data);
+            isToxic = data;
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+
+        //Send direct message
+        if(isToxic) {
+            await owner.send(userDetails);
+            console.log('message is sent');      
+        }
+
     }catch(ex){
-        
+        console.error(`No Contest: ${error.message}`);
     }
 });
 
@@ -31,10 +84,10 @@ client.on('messageCreate', async (message) => {
 
         //Message Prep
         const userDetails = `
-            **New Member Joined**
+            **New Message**
             - Username: ${message.author.username}}
             - ID: ${message.author.id}
-            - Member Info: ${(await message.fetch()).toString()}
+            - Message Info: ${(await message.fetch()).toString()}
         `;
         
         //Send message to Toxic Comment analysis
