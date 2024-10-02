@@ -1,6 +1,5 @@
 const dotenv = require('dotenv');
 const { Client, GatewayIntentBits } = require('discord.js');
-const puppeteer = require('puppeteer');
 dotenv.config();
 
 const client = new Client({
