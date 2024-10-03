@@ -54,7 +54,7 @@ client.on('guildMemberAdd', async (member) => {
         };
 
         //Send member info to Pattern analysis
-        fetch(`http://localhost:5079/PatternAnalysis${memberInfo}`)
+        fetch(`http://localhost:5079/pattern_analysis/${memberInfo}`)
         .then((response) => response.json())
         .then((data) => {
             console.log('Significant Pattern: ' + data);
@@ -85,11 +85,11 @@ client.on('messageCreate', async (message) => {
             **New Message**
             - Username: ${message.author.username}}
             - ID: ${message.author.id}
-            - Message Info: ${(await message.fetch()).toString()}
+            - Message Info: ${await message.fetch().toString()}
         `;
-        
-        //Send message to Toxic Comment analysis
-        fetch(`http://localhost:5079/ToxicMessage${message}`)
+        console.log(await message.fetch().toString());
+        //Send message to Toxic Comment analysis`
+        fetch(`http://localhost:5079/toxic-message/${message}`)
         .then((response) => response.json())
         .then((data) => {
             console.log('Traces of Toxicity: ' + data);
