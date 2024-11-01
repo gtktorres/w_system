@@ -1,8 +1,8 @@
 """
-URL configuration for toxic_comment_model project.
+URL configuration for api project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from api import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('toxic_message/', include('toxic_message.urls')),
-    path('pattern-analysis/', include('pattern-analysis.urls'))
+    path('toxic_pattern_name/', include('', views.toxic_pattern_name, name='toxic_pattern_name')),
+    path('toxic_pattern_avatar/', include('', views.toxic_pattern_avatar, name='toxic_pattern_avatar'))
 ]

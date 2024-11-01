@@ -3,3 +3,7 @@ node_modules/
 toxic_message/Include/
 toxic_message/Lib/
 toxic_message/Scripts/
+toxic_pattern/Include/
+toxic_pattern/Lib/
+toxic_pattern/Scripts/
+toxic_pattern/model/
