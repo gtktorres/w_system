@@ -6,4 +6,11 @@ toxic_message/Scripts/
 toxic_pattern/Include/
 toxic_pattern/Lib/
 toxic_pattern/Scripts/
-toxic_pattern/model/
+toxic_pattern/model/image_test/
+toxic_pattern/model/image_train/
+toxic_pattern/model/image_validation/
+toxic_pattern/model/jigsaw-unintended-bias-train.csv
+toxic_pattern/model/validation.csv
+toxic_pattern/model/Scripts/
+toxic_pattern/model/share/
+toxic_pattern/model/pyvenv.cfg
