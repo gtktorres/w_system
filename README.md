@@ -2,10 +2,10 @@
 
 ## Description
 
-An innovative software prototype that guages a users toxicity levels. 
+An innovative software prototype that gauges a user's toxicity levels. 
 This will be done by checking a new user's public information. 
 The AI model will then determine the toxicity level from the provided information.
-If toxic enough, it will inform the proper authority.
+If it is toxic enough, it will inform the proper authority.
 No administrative tasks are given.
 
 ## Getting Started
